@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AuthDesktop.Models\AuthDesktop.Models.csproj" />
+      <ProjectReference Include="..\Services\Services.csproj" />
     </ItemGroup>
 
 </Project>

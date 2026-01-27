@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthDesktop.ViewModels", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthDesktop.Models", "AuthDesktop.Models\AuthDesktop.Models.csproj", "{FFA900E6-1FE6-4C41-9243-B5807A99FA9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{D1117C60-1251-4CA1-94D4-6475191BF889}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{FFA900E6-1FE6-4C41-9243-B5807A99FA9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFA900E6-1FE6-4C41-9243-B5807A99FA9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFA900E6-1FE6-4C41-9243-B5807A99FA9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1117C60-1251-4CA1-94D4-6475191BF889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1117C60-1251-4CA1-94D4-6475191BF889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1117C60-1251-4CA1-94D4-6475191BF889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1117C60-1251-4CA1-94D4-6475191BF889}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
