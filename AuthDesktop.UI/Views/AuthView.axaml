@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:AuthDesktop.ViewModels;assembly=AuthDesktop.ViewModels">
+    <DataTemplate x:Key="AuthTemplate" DataType="vm:AuthViewModel">
+        <DockPanel>
+            <Panel DockPanel.Dock="Bottom">
+                <Button>Register</Button>
+            </Panel>
+            <ContentControl Content="{Binding LoginVm}"></ContentControl>
+        </DockPanel>
+    </DataTemplate>
+</ResourceDictionary>

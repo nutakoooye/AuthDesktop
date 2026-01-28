@@ -6,25 +6,28 @@ namespace AuthDesktop.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
 {
-    private IAuthService _authService;
+    private IAuthClientService _authClientService;
+    private IAuthStateService _authStateService;
     
     public MultiTabViewModel MultiTabVm { get; set; }
+    public AuthViewModel AuthVm { get; set; }
     
-    public MainWindowViewModel(IAuthService authService)
+    public MainWindowViewModel(IAuthClientService authClientService, IAuthStateService authStateService)
     {
-        MultiTabVm = new MultiTabViewModel();
+        _authClientService = authClientService;
+        _authStateService = authStateService;
         
-        _authService = authService;
+        MultiTabVm = new MultiTabViewModel(_authStateService);
+        AuthVm = new AuthViewModel(_authClientService, _authStateService);
         
         _greeting = "Greeting";
 
-        //TestApi().Wait();
         Task.Run(TestApi);
     }
 
     private async Task TestApi()
     {
-        var response =  await _authService.LoginAsync("admin", "admin");
+        var response =  await _authClientService.LoginAsync("admin", "admin");
         if (response is { } resp)
         {
             Greeting = resp.Message;

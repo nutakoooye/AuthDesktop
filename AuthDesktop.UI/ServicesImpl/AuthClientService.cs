@@ -7,7 +7,7 @@ using Services;
 
 namespace AuthDesktop.UI.ServicesImpl;
 
-public class DefaultAuthService : IAuthService
+public class AuthClientService : IAuthClientService
 {
     private IConfigurationService _configurationService;
 
@@ -15,13 +15,10 @@ public class DefaultAuthService : IAuthService
 
     private readonly HttpClient _httpClient;
 
-    public bool IsAuthenticated { get; private set; }
-    public string? CurrentUsername { get; private set; }
-
     private readonly JsonSerializerOptions _jsonOptions = new() { PropertyNameCaseInsensitive = true };
 
 
-    public DefaultAuthService(IConfigurationService configurationService)
+    public AuthClientService(IConfigurationService configurationService)
     {
         _configurationService = configurationService;
         _baseUrl = _configurationService.AuthApiUrl;
@@ -54,12 +51,6 @@ public class DefaultAuthService : IAuthService
         var responseJson = await response.Content.ReadAsStringAsync();
         var apiResponse = JsonSerializer.Deserialize<ApiResponse>(responseJson, _jsonOptions);
 
-        if (apiResponse.Code == 200)
-        {
-            IsAuthenticated = true;
-            CurrentUsername = username;
-        }
-
         return apiResponse;
     }
 
@@ -83,9 +74,6 @@ public class DefaultAuthService : IAuthService
 
         var responseJson = await response.Content.ReadAsStringAsync();
         var apiResponse = JsonSerializer.Deserialize<ApiResponse>(responseJson, _jsonOptions);
-
-        IsAuthenticated = false;
-        CurrentUsername = null;
 
         return apiResponse;
     }

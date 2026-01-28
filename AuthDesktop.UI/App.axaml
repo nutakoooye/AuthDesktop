@@ -4,7 +4,7 @@
              xmlns:local="using:AuthDesktop.UI"
              RequestedThemeVariant="Light">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-    
+
 
     <Application.Styles>
         <FluentTheme />
@@ -17,6 +17,9 @@
                 <ResourceInclude Source="Views/MultiTabView.axaml"></ResourceInclude>
                 <ResourceInclude Source="Views/UserInfoView.axaml"></ResourceInclude>
                 <ResourceInclude Source="Views/DeveloperDataView.axaml"></ResourceInclude>
+                <ResourceInclude Source="Views/AuthView.axaml"></ResourceInclude>
+                <ResourceInclude Source="Views/LoginView.axaml"></ResourceInclude>
+                <ResourceInclude Source="Views/RegisterView.axaml"></ResourceInclude>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
@@ -24,5 +27,8 @@
         <StaticResource ResourceKey="MultiTabTemplate" />
         <StaticResource ResourceKey="UserInfoTemplate" />
         <StaticResource ResourceKey="DeveloperDataTemplate" />
+        <StaticResource ResourceKey="AuthTemplate" />
+        <StaticResource ResourceKey="LoginTemplate" />
+        <StaticResource ResourceKey="RegisterTemplate" />
     </Application.DataTemplates>
 </Application>
