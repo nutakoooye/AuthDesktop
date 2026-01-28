@@ -9,7 +9,7 @@ namespace AuthDesktop.UI.ServicesImpl;
 
 public class DefaultAuthService : IAuthService
 {
-    private ConfigurationService _configurationService;
+    private IConfigurationService _configurationService;
 
     private string _baseUrl;
 
@@ -21,7 +21,7 @@ public class DefaultAuthService : IAuthService
     private readonly JsonSerializerOptions _jsonOptions = new() { PropertyNameCaseInsensitive = true };
 
 
-    public DefaultAuthService(ConfigurationService configurationService)
+    public DefaultAuthService(IConfigurationService configurationService)
     {
         _configurationService = configurationService;
         _baseUrl = _configurationService.AuthApiUrl;

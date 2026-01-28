@@ -57,7 +57,7 @@ public static class ServiceCollectionExtensions
     public static void AddCommonServices(this IServiceCollection collection)
     {
         collection.AddSingleton<IAuthService, DefaultAuthService>();
-        collection.AddSingleton<ConfigurationService>();
+        collection.AddSingleton<IConfigurationService, ConfigurationService>();
         collection.AddTransient<MainWindowViewModel>();
     }
 }

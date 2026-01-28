@@ -25,7 +25,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AuthDesktop.ViewModels\AuthDesktop.ViewModels.csproj" />
-      <ProjectReference Include="..\Services\Services.csproj" />
+      <ProjectReference Include="..\AuthDesktop.Services\AuthDesktop.Services.csproj" />
     </ItemGroup>
 
     <ItemGroup>

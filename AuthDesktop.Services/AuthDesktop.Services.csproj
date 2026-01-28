@@ -4,15 +4,11 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>Services</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\AuthDesktop.Models\AuthDesktop.Models.csproj" />
-      <ProjectReference Include="..\AuthDesktop.Services\AuthDesktop.Services.csproj" />
     </ItemGroup>
 
 </Project>

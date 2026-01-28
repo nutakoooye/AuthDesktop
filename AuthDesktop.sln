@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthDesktop.ViewModels", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthDesktop.Models", "AuthDesktop.Models\AuthDesktop.Models.csproj", "{FFA900E6-1FE6-4C41-9243-B5807A99FA9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{D1117C60-1251-4CA1-94D4-6475191BF889}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthDesktop.Services", "AuthDesktop.Services\AuthDesktop.Services.csproj", "{D1117C60-1251-4CA1-94D4-6475191BF889}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
