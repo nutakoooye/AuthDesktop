@@ -4,13 +4,14 @@ namespace Services;
 
 public interface IAuthService
 {
-    Task<long> Login(string username, string password);
+    Task<ApiResponse?> LoginAsync(string username, string password);
     
-    Task<long> Register(User user);
+    Task<ApiResponse?> RegisterAsync(User user);
     
-    Task<bool> Logout();
+    Task<ApiResponse?> LogoutAsync();
     
-    Task<User> GetUser(string username);
+    Task<User?> GetUserAsync(string username);
     
-    string GetTest();
+    bool IsAuthenticated { get; }
+    string? CurrentUsername { get; }
 }
