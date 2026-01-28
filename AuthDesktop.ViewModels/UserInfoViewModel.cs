@@ -2,6 +2,7 @@
 
 namespace AuthDesktop.ViewModels;
 
-public class ViewModelBase : ObservableObject
+public class UserInfoViewModel:ObservableObject
 {
+    
 }

@@ -5,7 +5,7 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using AuthDesktop.ViewModels;
-using AuthDesktop.UI.Views;
+using AuthDesktop.UI;
 using Microsoft.Extensions.DependencyInjection;
 using Services;
 
