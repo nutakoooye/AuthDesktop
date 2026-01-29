@@ -1,6 +1,8 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using AuthDesktop.Models;
 using Services;
@@ -15,66 +17,116 @@ public class AuthClientService : IAuthClientService
 
     private readonly HttpClient _httpClient;
 
-    private readonly JsonSerializerOptions _jsonOptions = new() { PropertyNameCaseInsensitive = true };
 
-
-    public AuthClientService(IConfigurationService configurationService)
+    public AuthClientService(IConfigurationService configurationService, HttpClient? httpClient = null)
     {
-        _configurationService = configurationService;
+        _configurationService = _configurationService =
+            configurationService ?? throw new ArgumentNullException(nameof(configurationService));
+
         _baseUrl = _configurationService.AuthApiUrl;
-        _httpClient = new HttpClient();
+
+        
+        _httpClient = httpClient ?? new HttpClient();
+        if (_httpClient.BaseAddress is null)
+            _httpClient.BaseAddress = new Uri(_configurationService.AuthApiUrl.TrimEnd('/') + "/");
     }
 
+    public Task<ApiResult<ApiResponse>> RegisterAsync(User user, CancellationToken ct = default)
+        => SendJsonAsync<ApiResponse>(HttpMethod.Post, "user", user, ct);
 
-    public async Task<ApiResponse?> RegisterAsync(User user)
+    public Task<ApiResult<ApiResponse>> LoginAsync(string username, string password, CancellationToken ct = default)
+        => SendJsonAsync<ApiResponse>(HttpMethod.Get, $"user/login?username={Uri.EscapeDataString(username)}&password={Uri.EscapeDataString(password)}", body: null, ct);
+    
+    public Task<ApiResult<User>> GetUserAsync(string username, CancellationToken ct = default)
+        => SendJsonAsync<User>(HttpMethod.Get, $"user/{Uri.EscapeDataString(username)}", body: null, ct);
+
+    public Task<ApiResult<ApiResponse>> LogoutAsync(CancellationToken ct = default)
+        => SendJsonAsync<ApiResponse>(HttpMethod.Get, "user/logout", body: null, ct);
+
+    private async Task<ApiResult<T>> SendJsonAsync<T>(HttpMethod method, string relativeUrl, object? body,
+        CancellationToken ct)
     {
-        var json = JsonSerializer.Serialize(user);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        using var req = new HttpRequestMessage(method, relativeUrl);
 
-        var response = await _httpClient.PostAsync($"{_baseUrl}/user", content);
-        if (!response.IsSuccessStatusCode)
-            return null;
+        if (body is not null)
+        {
+            var json = JsonSerializer.Serialize(body);
+            req.Content = new StringContent(json, Encoding.UTF8, "application/json");
+        }
 
-        var responseJson = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<ApiResponse>(responseJson, _jsonOptions);
+        HttpResponseMessage resp;
+        string respText;
+
+        try
+        {
+            resp = await _httpClient.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, ct)
+                .ConfigureAwait(false);
+        }
+        catch (TaskCanceledException ex) when (!ct.IsCancellationRequested)
+        {
+            return ApiResult<T>.Fail(new ApiError("NetworkError", "Timeout while calling server.", null, ex.Message));
+        }
+        catch (HttpRequestException ex)
+        {
+            return ApiResult<T>.Fail(new ApiError("NetworkError", "Network error while calling server.", null,
+                ex.Message));
+        }
+        catch (Exception ex)
+        {
+            return ApiResult<T>.Fail(new ApiError("Unexpected", "Unexpected error while calling server.", null,
+                ex.ToString()));
+        }
+
+        try
+        {
+            respText = await resp.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            return ApiResult<T>.Fail(
+                new ApiError("NetworkError", "Failed to read server response body.", resp.StatusCode, ex.ToString()),
+                resp.StatusCode);
+        }
+
+        if (!resp.IsSuccessStatusCode)
+        {
+            var msg = $"HTTP {(int)resp.StatusCode} {resp.ReasonPhrase}".Trim();
+            var parsed = TryDeserialize<ApiResponse>(respText, out var apiErr);
+
+            if (parsed)
+                msg = $"{msg}. {apiErr.Message}".Trim();
+
+            return ApiResult<T>.Fail(
+                new ApiError("HttpError", msg, resp.StatusCode, respText),
+                resp.StatusCode
+            );
+        }
+        
+        if (string.IsNullOrWhiteSpace(respText))
+            return ApiResult<T>.Success(default, resp.StatusCode);
+
+        if (!TryDeserialize<T>(respText, out var data))
+        {
+            return ApiResult<T>.Fail(
+                new ApiError("DeserializeError", "Failed to deserialize JSON response.", resp.StatusCode, respText),
+                resp.StatusCode
+            );
+        }
+
+        return ApiResult<T>.Success(data, resp.StatusCode);
     }
 
-
-    public async Task<ApiResponse?> LoginAsync(string username, string password)
+    private bool TryDeserialize<T>(string json, out T? value)
     {
-        var url = $"{_baseUrl}/user/login?username={username}&password={password}";
-        var response = await _httpClient.GetAsync(url);
-
-        if (!response.IsSuccessStatusCode)
-            return null;
-
-        var responseJson = await response.Content.ReadAsStringAsync();
-        var apiResponse = JsonSerializer.Deserialize<ApiResponse>(responseJson, _jsonOptions);
-
-        return apiResponse;
-    }
-
-
-    public async Task<User?> GetUserAsync(string username)
-    {
-        var response = await _httpClient.GetAsync($"{_baseUrl}/user/{username}");
-        if (!response.IsSuccessStatusCode)
-            return null;
-
-        var json = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<User>(json, _jsonOptions);
-    }
-
-
-    public async Task<ApiResponse?> LogoutAsync()
-    {
-        var response = await _httpClient.GetAsync($"{_baseUrl}/user/logout");
-        if (!response.IsSuccessStatusCode)
-            return null;
-
-        var responseJson = await response.Content.ReadAsStringAsync();
-        var apiResponse = JsonSerializer.Deserialize<ApiResponse>(responseJson, _jsonOptions);
-
-        return apiResponse;
+        try
+        {
+            value = JsonSerializer.Deserialize<T>(json);
+            return true;
+        }
+        catch
+        {
+            value = default;
+            return false;
+        }
     }
 }

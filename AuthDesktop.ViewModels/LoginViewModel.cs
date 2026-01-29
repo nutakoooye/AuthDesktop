@@ -14,6 +14,9 @@ public partial class LoginViewModel:ObservableObject
     
     [ObservableProperty]
     private string _passwordText;
+    
+    [ObservableProperty]
+    private string? _errorMessage;
 
     public LoginViewModel(IAuthClientService authClientService, IAuthStateService authStateService)
     {
@@ -25,13 +28,22 @@ public partial class LoginViewModel:ObservableObject
     [RelayCommand]
     public async Task LoginCommand()
     {
-        var response = await _authClientService.LoginAsync(LoginText, PasswordText);
-        if (response is null || response.Value.Code != 200)
-            return; 
-        var user = await _authClientService.GetUserAsync(LoginText);
-        if (user is {} u)
+        var loginResponse = await _authClientService.LoginAsync(LoginText, PasswordText);
+        if (loginResponse.IsSuccess)
         {
-            _authStateService.Login(u);
+            if (loginResponse.Data.Code == 200)
+            {
+                var sessionId = loginResponse.Data.Message.Split(":").Last();
+                _authStateService.Login(LoginText, sessionId);
+            }
+            else
+            {
+                ErrorMessage = loginResponse.Data.Message;
+            }
+        }
+        else
+        {
+            ErrorMessage =  loginResponse.Error?.Message;
         }
     }
 }

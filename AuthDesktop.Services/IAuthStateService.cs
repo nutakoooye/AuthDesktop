@@ -6,9 +6,11 @@ public interface IAuthStateService
 {
     bool IsLoggedIn { get;  }
     
-    User? CurrentUser { get; }
+    string? SessionId { get; }
+    
+    string? UserName { get; }
     
     void Logout();
     
-    void Login(User user);
+    void Login(String sessionId,  String userName);
 }

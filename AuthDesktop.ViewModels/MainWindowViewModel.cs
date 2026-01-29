@@ -19,21 +19,5 @@ public partial class MainWindowViewModel : ObservableObject
         
         MultiTabVm = new MultiTabViewModel(_authStateService);
         AuthVm = new AuthViewModel(_authClientService, _authStateService);
-        
-        _greeting = "Greeting";
-
-        Task.Run(TestApi);
     }
-
-    private async Task TestApi()
-    {
-        var response =  await _authClientService.LoginAsync("admin", "admin");
-        if (response is { } resp)
-        {
-            Greeting = resp.Message;
-        }
-    }
-    
-    [ObservableProperty]
-    private string _greeting;
 }

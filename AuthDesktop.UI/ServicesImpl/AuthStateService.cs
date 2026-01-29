@@ -10,17 +10,22 @@ public partial class AuthStateService : ObservableObject, IAuthStateService
     private bool _isLoggedIn;
 
     [ObservableProperty]
-    private User? _currentUser;
+    private string? _sessionId;
+    
+    [ObservableProperty]
+    private string? _userName;
 
     public void Logout()
     {
-        CurrentUser = null;
+        SessionId = null;
+        UserName = null;
         IsLoggedIn = false;
     }
 
-    public void Login(User user)
+    public void Login(string sessionId,   string userName)
     {
-        CurrentUser = user;
+        SessionId = sessionId;
+        UserName = userName;
         IsLoggedIn = true;
     }
 }
