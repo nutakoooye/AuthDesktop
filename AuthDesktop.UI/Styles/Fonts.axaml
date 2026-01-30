@@ -44,10 +44,6 @@
         <Setter Property="Margin" Value="0,6,0,2"/>
     </Style>
 
-    <!-- ========================= -->
-    <!-- Message styles -->
-    <!-- ========================= -->
-
     <Style Selector="TextBlock.danger">
         <Setter Property="Foreground" Value="{DynamicResource DangerColor}"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
