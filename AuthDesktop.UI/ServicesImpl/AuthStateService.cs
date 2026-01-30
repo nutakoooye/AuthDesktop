@@ -6,26 +6,23 @@ namespace AuthDesktop.UI.ServicesImpl;
 
 public partial class AuthStateService : ObservableObject, IAuthStateService
 {
-    [ObservableProperty]
-    private bool _isLoggedIn;
+    [ObservableProperty] private bool _isLoggedIn;
 
-    [ObservableProperty]
-    private string? _sessionId;
-    
-    [ObservableProperty]
-    private string? _userName;
+    [ObservableProperty] private string? _sessionId;
+
+    [ObservableProperty] private User? _user;
 
     public void Logout()
     {
         SessionId = null;
-        UserName = null;
+        User = null;
         IsLoggedIn = false;
     }
 
-    public void Login(string sessionId,   string userName)
+    public void Login(string sessionId, User user)
     {
         SessionId = sessionId;
-        UserName = userName;
+        User = user;
         IsLoggedIn = true;
     }
 }

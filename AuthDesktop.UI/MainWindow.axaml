@@ -19,12 +19,12 @@
     <Grid ColumnDefinitions="* Auto">
         <Border Grid.Column="0"
                 Classes="Card">
-            <ContentControl Content="{Binding MultiTabVm}" />
+            <ContentControl Content="{Binding MultiTabViewModel}" />
         </Border>
         <Border Grid.Column="1"
                 Width="300"
                 Classes="Card">
-            <ContentControl Content="{Binding AuthVm}" />
+            <ContentControl Content="{Binding AuthViewModel}" />
         </Border>
     </Grid>
 

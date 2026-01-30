@@ -1,13 +1,22 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using AuthDesktop.Models;
+using AuthDesktop.ViewModels.Messages;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Services;
 
 namespace AuthDesktop.ViewModels;
 
-public class AuthViewModel:ObservableObject
+public partial class AuthViewModel:ObservableObject
 {
+    [ObservableProperty]
     private IAuthStateService _authStateService;
+    
     private IAuthClientService _authClientService;
     public LoginViewModel LoginVm { get; set; }
+    
+    [ObservableProperty]
+    private string? _errorMessage;
     
     public AuthViewModel(IAuthClientService authClientService, IAuthStateService authStateService)
     {
@@ -15,5 +24,30 @@ public class AuthViewModel:ObservableObject
         _authStateService = authStateService;
         
         LoginVm = new LoginViewModel(_authClientService, _authStateService);
+    }
+    
+    [RelayCommand]
+    public async Task LogoutAsync()
+    {
+        var logoutResponse = await _authClientService.LogoutAsync();
+        
+        if (!logoutResponse.IsSuccess)
+        {
+            ErrorMessage =  logoutResponse.Error?.Message;
+            return;
+        }
+        if (logoutResponse.Data.Code != 200)
+        {
+            ErrorMessage = logoutResponse.Data.Message;
+            return;
+        }
+        
+        AuthStateService.Logout();
+    }
+
+    [RelayCommand]
+    public async Task RegisterAsync()
+    {
+        var logpas = await WeakReferenceMessenger.Default.Send(new RegistrationMessage());
     }
 }

@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:AuthDesktop.ViewModels;assembly=AuthDesktop.ViewModels">
-    <DataTemplate x:Key="RegisterTemplate" DataType="vm:RegisterViewModel">
+    <DataTemplate x:Key="RegisterTemplate" DataType="vm:RegistrationViewModel">
         
     </DataTemplate>
 </ResourceDictionary>

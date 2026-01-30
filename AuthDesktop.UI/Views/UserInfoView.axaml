@@ -1,7 +1,29 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:vm="clr-namespace:AuthDesktop.ViewModels;assembly=AuthDesktop.ViewModels">
+                    xmlns:vm="clr-namespace:AuthDesktop.ViewModels;assembly=AuthDesktop.ViewModels"
+                    xmlns:controls="clr-namespace:AuthDesktop.UI.Controls">
     <DataTemplate x:Key="UserInfoTemplate" DataType="vm:UserInfoViewModel">
-        <TextBlock Text="{Binding AuthStateService.IsLoggedIn}"></TextBlock>
+        <Panel>
+            <Panel Name="NotAuthPanel" IsVisible="{Binding !AuthStateService.IsLoggedIn}">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                    Please, log in to view user info
+                </TextBlock>
+            </Panel>
+            <Panel Name="AuthPanel" IsVisible="{Binding AuthStateService.IsLoggedIn}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="300">
+                    <controls:KeyValueBlock Key="ID:" Value="{Binding User.Id}"/>
+                    <Separator/>
+                    <controls:KeyValueBlock Key="Username:" Value="{Binding User.UserName}"/>
+                    <Separator/>
+                    <controls:KeyValueBlock Key="First name:" Value="{Binding User.FirstName}"/>
+                    <Separator/>
+                    <controls:KeyValueBlock Key="Last name:" Value="{Binding User.LastName}"/>
+                    <Separator/>
+                    <controls:KeyValueBlock Key="Email:" Value="{Binding User.Email}"/>
+                    <Separator/>
+                    <controls:KeyValueBlock Key="Phone:" Value="{Binding User.Phone}"/>
+                </StackPanel>
+            </Panel>
+        </Panel>
     </DataTemplate>
 </ResourceDictionary>

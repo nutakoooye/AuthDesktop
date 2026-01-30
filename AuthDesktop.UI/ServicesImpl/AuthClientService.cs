@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -11,7 +12,7 @@ namespace AuthDesktop.UI.ServicesImpl;
 
 public class AuthClientService : IAuthClientService
 {
-    private IConfigurationService _configurationService;
+    private readonly IConfigurationService _configurationService;
 
     private string _baseUrl;
 
@@ -20,23 +21,38 @@ public class AuthClientService : IAuthClientService
 
     public AuthClientService(IConfigurationService configurationService, HttpClient? httpClient = null)
     {
-        _configurationService = _configurationService =
-            configurationService ?? throw new ArgumentNullException(nameof(configurationService));
+        _configurationService = configurationService ?? throw new ArgumentNullException(nameof(configurationService));
 
         _baseUrl = _configurationService.AuthApiUrl;
 
+        var handler = new HttpClientHandler();
+        string? proxyHost = Environment.GetEnvironmentVariable("PROXY_HOST", EnvironmentVariableTarget.User);
+        if (proxyHost is not null)
+        {
+            var proxy = new WebProxy(proxyHost)
+            {
+                Credentials = new NetworkCredential(
+                    Environment.GetEnvironmentVariable("PROXY_LOGIN", EnvironmentVariableTarget.User),
+                    Environment.GetEnvironmentVariable("PROXY_PASS", EnvironmentVariableTarget.User)
+                )
+            };
+            handler.Proxy = proxy;
+            handler.UseProxy = true;
+        }
         
-        _httpClient = httpClient ?? new HttpClient();
+        _httpClient = httpClient ?? new HttpClient(handler);
         if (_httpClient.BaseAddress is null)
-            _httpClient.BaseAddress = new Uri(_configurationService.AuthApiUrl.TrimEnd('/') + "/");
+            _httpClient.BaseAddress = new Uri(_baseUrl.TrimEnd('/') + "/");
     }
 
     public Task<ApiResult<ApiResponse>> RegisterAsync(User user, CancellationToken ct = default)
         => SendJsonAsync<ApiResponse>(HttpMethod.Post, "user", user, ct);
 
     public Task<ApiResult<ApiResponse>> LoginAsync(string username, string password, CancellationToken ct = default)
-        => SendJsonAsync<ApiResponse>(HttpMethod.Get, $"user/login?username={Uri.EscapeDataString(username)}&password={Uri.EscapeDataString(password)}", body: null, ct);
-    
+        => SendJsonAsync<ApiResponse>(HttpMethod.Get,
+            $"user/login?username={Uri.EscapeDataString(username)}&password={Uri.EscapeDataString(password)}",
+            body: null, ct);
+
     public Task<ApiResult<User>> GetUserAsync(string username, CancellationToken ct = default)
         => SendJsonAsync<User>(HttpMethod.Get, $"user/{Uri.EscapeDataString(username)}", body: null, ct);
 
@@ -101,7 +117,7 @@ public class AuthClientService : IAuthClientService
                 resp.StatusCode
             );
         }
-        
+
         if (string.IsNullOrWhiteSpace(respText))
             return ApiResult<T>.Success(default, resp.StatusCode);
 

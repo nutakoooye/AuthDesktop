@@ -14,6 +14,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="Styles/Colors.axaml"></ResourceInclude>
+                <ResourceInclude Source="Controls/KeyValueBlock.axaml"></ResourceInclude>
                 <ResourceInclude Source="Views/MultiTabView.axaml"></ResourceInclude>
                 <ResourceInclude Source="Views/UserInfoView.axaml"></ResourceInclude>
                 <ResourceInclude Source="Views/DeveloperDataView.axaml"></ResourceInclude>

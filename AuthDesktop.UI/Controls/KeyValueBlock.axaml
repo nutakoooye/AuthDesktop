@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:AuthDesktop.UI.Controls">
+    <Design.PreviewWith>
+        <Border Padding="20" Width="200">
+            <controls:KeyValueBlock Key="Key:" Value="Value"/>
+        </Border>
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type controls:KeyValueBlock}" TargetType="controls:KeyValueBlock">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid ColumnDefinitions="* *">
+                    <TextBlock Name="PART_KeyTextBlock" Grid.Column="0" Text="{TemplateBinding Key}"/>
+                    <TextBlock Name="PART_ValueTextBlock" Grid.Column="1" Text="{TemplateBinding Value}"/>
+                    
+                    <Grid.Styles>
+                        <Style Selector="TextBlock#PART_KeyTextBlock">
+                            <Setter Property="TextAlignment" Value="Left"/>
+                        </Style>
+        
+                        <Style Selector="TextBlock#PART_ValueTextBlock">
+                            <Setter Property="TextAlignment" Value="Right"/>
+                        </Style>
+                    </Grid.Styles>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

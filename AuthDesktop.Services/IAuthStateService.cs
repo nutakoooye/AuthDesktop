@@ -4,13 +4,13 @@ namespace Services;
 
 public interface IAuthStateService
 {
-    bool IsLoggedIn { get;  }
-    
+    bool IsLoggedIn { get; }
+
     string? SessionId { get; }
-    
-    string? UserName { get; }
-    
+
+    User? User { get; }
+
     void Logout();
-    
-    void Login(String sessionId,  String userName);
+
+    void Login(String sessionId, User user);
 }

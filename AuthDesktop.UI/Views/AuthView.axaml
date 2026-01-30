@@ -2,11 +2,19 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:AuthDesktop.ViewModels;assembly=AuthDesktop.ViewModels">
     <DataTemplate x:Key="AuthTemplate" DataType="vm:AuthViewModel">
-        <DockPanel>
-            <Panel DockPanel.Dock="Bottom">
-                <Button>Register</Button>
-            </Panel>
-            <ContentControl Content="{Binding LoginVm}"></ContentControl>
-        </DockPanel>
+        <Panel>
+            <DockPanel IsVisible="{Binding !AuthStateService.IsLoggedIn}">
+                <Panel DockPanel.Dock="Bottom">
+                    <Button Command="{Binding RegisterCommand}">Register</Button>
+                </Panel>
+                <ContentControl Content="{Binding LoginVm}"></ContentControl>
+            </DockPanel>
+            <StackPanel IsVisible="{Binding AuthStateService.IsLoggedIn}" 
+                        VerticalAlignment="Center">
+                <Button HorizontalAlignment="Center" Command="{Binding LogoutCommand}" Content="LOG OUT"/>
+                <TextBlock HorizontalAlignment="Center" Foreground="{DynamicResource Danger40Color}"></TextBlock>
+            </StackPanel>
+        </Panel>
+        
     </DataTemplate>
 </ResourceDictionary>

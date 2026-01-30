@@ -1,3 +1,4 @@
+using System;
 using AuthDesktop.UI.ServicesImpl;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -13,6 +14,8 @@ namespace AuthDesktop.UI;
 
 public partial class App : Application
 {
+    public static IServiceProvider Services { get; private set; } = default!;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -29,22 +32,18 @@ public partial class App : Application
         collection.AddCommonServices();
 
         // Creates a ServiceProvider containing services from the provided IServiceCollection
-        var services = collection.BuildServiceProvider();
+        Services = collection.BuildServiceProvider();
 
-        var vm = services.GetRequiredService<MainWindowViewModel>();
+        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = vm
-            };
+            desktop.MainWindow = Services.GetRequiredService<MainWindow>();
+            desktop.MainWindow.DataContext = Services.GetRequiredService<MainWindowViewModel>();
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
-            singleViewPlatform.MainView = new MainWindow()
-            {
-                DataContext = vm
-            };
+            singleViewPlatform.MainView = Services.GetRequiredService<MainWindow>();
+            singleViewPlatform.MainView.DataContext = Services.GetRequiredService<MainWindowViewModel>();
         }
 
         base.OnFrameworkInitializationCompleted();
@@ -59,6 +58,11 @@ public static class ServiceCollectionExtensions
         collection.AddSingleton<IAuthClientService, AuthClientService>();
         collection.AddSingleton<IAuthStateService, AuthStateService>();
         collection.AddSingleton<IConfigurationService, ConfigurationService>();
+        
+        collection.AddTransient<RegistrationViewModel>();
+        collection.AddTransient<RegistrationWindow>();
+        
         collection.AddTransient<MainWindowViewModel>();
+        collection.AddTransient<MainWindow>();
     }
 }

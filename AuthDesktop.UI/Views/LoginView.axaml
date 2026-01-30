@@ -7,7 +7,7 @@
                 <TextBox Text="{Binding LoginText}" Watermark="login"></TextBox>
                 <TextBox Text="{Binding PasswordText}" Watermark="password" PasswordChar="*"></TextBox>
                 <TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource Danger40Color}"></TextBlock>
-                <Button Command="{Binding LoginCommand}">Login</Button>
+                <Button Command="{Binding LoginCommand}">LOG IN</Button>
             </StackPanel>
         </Border>
     </DataTemplate>
