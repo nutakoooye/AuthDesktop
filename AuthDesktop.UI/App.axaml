@@ -9,6 +9,9 @@
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="Styles/CardBorder.axaml"></StyleInclude>
+        <StyleInclude Source="Styles/FormTextBox.axaml"></StyleInclude>
+        <StyleInclude Source="Styles/RoundedListBox.axaml"></StyleInclude>
+        <StyleInclude Source="Styles/Fonts.axaml"></StyleInclude>
     </Application.Styles>
     <Application.Resources>
         <ResourceDictionary>
@@ -20,7 +23,6 @@
                 <ResourceInclude Source="Views/DeveloperDataView.axaml"></ResourceInclude>
                 <ResourceInclude Source="Views/AuthView.axaml"></ResourceInclude>
                 <ResourceInclude Source="Views/LoginView.axaml"></ResourceInclude>
-                <ResourceInclude Source="Views/RegisterView.axaml"></ResourceInclude>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
@@ -30,6 +32,5 @@
         <StaticResource ResourceKey="DeveloperDataTemplate" />
         <StaticResource ResourceKey="AuthTemplate" />
         <StaticResource ResourceKey="LoginTemplate" />
-        <StaticResource ResourceKey="RegisterTemplate" />
     </Application.DataTemplates>
 </Application>

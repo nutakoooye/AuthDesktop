@@ -1,141 +1,16 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <!-- this data was generated automatically by FigmaParser -->
-  <!-- Colors -->
-  	<Color x:Key="Primary100Color">#FFFEFD</Color>
-	<Color x:Key="Primary98Color">#FFF8F1</Color>
-	<Color x:Key="Primary95Color">#FFEFD1</Color>
-	<Color x:Key="Primary90Color">#FFDF96</Color>
-	<Color x:Key="Primary80Color">#E3C376</Color>
-	<Color x:Key="Primary70Color">#C0A259</Color>
-	<Color x:Key="Primary60Color">#A5873C</Color>
-	<Color x:Key="Primary50Color">#937732</Color>
-	<Color x:Key="Primary40Color">#735B19</Color>
-	<Color x:Key="Primary30Color">#594400</Color>
-	<Color x:Key="Primary20Color">#3E2E00</Color>
-	<Color x:Key="Primary10Color">#251A00</Color>
-	<Color x:Key="Primary0Color">#131009</Color>
-	<!-- <Color x:Key="LightTextColor">#D6DADE</Color> -->
-	<!-- <Color x:Key="DarkTextColor">#1C232B</Color> -->
-	<Color x:Key="Background0Color">#0F1114</Color>
-	<Color x:Key="Background10Color">#12151A</Color>
-	<Color x:Key="Background20Color">#161B21</Color>
-	<Color x:Key="Background30Color">#1C232B</Color>
-	<Color x:Key="Background40Color">#222830</Color>
-	<Color x:Key="Background50Color">#262D36</Color>
-	<Color x:Key="Background60Color">#2D3540</Color>
-	<Color x:Key="Background70Color">#383F4A</Color>
-	<Color x:Key="Background80Color">#424A53</Color>
-	<Color x:Key="Background90Color">#4C5561</Color>
-	<Color x:Key="Background95Color">#6C727A</Color>
-	<Color x:Key="Background98Color">#B6B8BC</Color>
-	<Color x:Key="Background100Color">#D5D7D9</Color>
-	<Color x:Key="Secondary0Color">#180F0A</Color>
-	<Color x:Key="Secondary10Color">#3E261B</Color>
-	<Color x:Key="Secondary20Color">#704530</Color>
-	<Color x:Key="Secondary30Color">#A16446</Color>
-	<Color x:Key="Secondary40Color">#C67A56</Color>
-	<Color x:Key="Secondary50Color">#DF8960</Color>
-	<Color x:Key="Secondary60Color">#F8996B</Color>
-	<Color x:Key="Secondary70Color">#F9A37A</Color>
-	<Color x:Key="Secondary80Color">#FAB390</Color>
-	<Color x:Key="Secondary90Color">#FBC2A6</Color>
-	<Color x:Key="Secondary95Color">#FCCCB5</Color>
-	<Color x:Key="Secondary98Color">#FDE1D3</Color>
-	<Color x:Key="Secondary100Color">#FEF0E9</Color>
-	<Color x:Key="Neutral100Color">#FFFFFF</Color>
-	<Color x:Key="Neutral98Color">#FFF8F2</Color>
-	<Color x:Key="Neutral95Color">#F6F0EA</Color>
-	<Color x:Key="Neutral90Color">#E8E1DB</Color>
-	<Color x:Key="Neutral80Color">#CBC6C0</Color>
-	<Color x:Key="Neutral70Color">#AFAAA5</Color>
-	<Color x:Key="Neutral60Color">#94908B</Color>
-	<Color x:Key="Neutral50Color">#7A7672</Color>
-	<Color x:Key="Neutral40Color">#615E59</Color>
-	<Color x:Key="Neutral30Color">#494642</Color>
-	<Color x:Key="Neutral20Color">#33302C</Color>
-	<Color x:Key="Neutral10Color">#1D1B18</Color>
-	<Color x:Key="Neutral0Color">#000000</Color>
-	<Color x:Key="Success90Color">#E1EBAB</Color>
-	<Color x:Key="Success80Color">#D2DC9B</Color>
-	<Color x:Key="Success70Color">#CEDC84</Color>
-	<Color x:Key="Success60Color">#AABA56</Color>
-	<Color x:Key="Success50Color">#8B9942</Color>
-	<Color x:Key="Success40Color">#6E7A31</Color>
-	<Color x:Key="Danger90Color">#E09E9E</Color>
-	<Color x:Key="Danger80Color">#E08686</Color>
-	<Color x:Key="Danger70Color">#CF7171</Color>
-	<Color x:Key="Danger60Color">#C05959</Color>
-	<Color x:Key="Danger50Color">#AE4A4A</Color>
-	<Color x:Key="Danger40Color">#8F3B3B</Color>
-
   
-  <!-- Brushes -->
-  	<SolidColorBrush x:Key="Primary100Brush" Color="{DynamicResource Primary100Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary98Brush" Color="{DynamicResource Primary98Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary95Brush" Color="{DynamicResource Primary95Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary90Brush" Color="{DynamicResource Primary90Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary80Brush" Color="{DynamicResource Primary80Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary70Brush" Color="{DynamicResource Primary70Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary60Brush" Color="{DynamicResource Primary60Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary50Brush" Color="{DynamicResource Primary50Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary40Brush" Color="{DynamicResource Primary40Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary30Brush" Color="{DynamicResource Primary30Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary20Brush" Color="{DynamicResource Primary20Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary10Brush" Color="{DynamicResource Primary10Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Primary0Brush" Color="{DynamicResource Primary0Color}" Opacity="1"/>
-	<!-- <SolidColorBrush x:Key="LightTextBrush" Color="{DynamicResource LightTextColor}" Opacity="1"/> -->
-	<!-- <SolidColorBrush x:Key="DarkTextBrush" Color="{DynamicResource DarkTextColor}" Opacity="1"/> -->
-	<SolidColorBrush x:Key="Background0Brush" Color="{DynamicResource Background0Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background10Brush" Color="{DynamicResource Background10Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background20Brush" Color="{DynamicResource Background20Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background30Brush" Color="{DynamicResource Background30Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background40Brush" Color="{DynamicResource Background40Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background50Brush" Color="{DynamicResource Background50Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background60Brush" Color="{DynamicResource Background60Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background70Brush" Color="{DynamicResource Background70Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background80Brush" Color="{DynamicResource Background80Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background90Brush" Color="{DynamicResource Background90Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background95Brush" Color="{DynamicResource Background95Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background98Brush" Color="{DynamicResource Background98Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Background100Brush" Color="{DynamicResource Background100Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary0Brush" Color="{DynamicResource Secondary0Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary10Brush" Color="{DynamicResource Secondary10Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary20Brush" Color="{DynamicResource Secondary20Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary30Brush" Color="{DynamicResource Secondary30Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary40Brush" Color="{DynamicResource Secondary40Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary50Brush" Color="{DynamicResource Secondary50Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary60Brush" Color="{DynamicResource Secondary60Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary70Brush" Color="{DynamicResource Secondary70Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary80Brush" Color="{DynamicResource Secondary80Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary90Brush" Color="{DynamicResource Secondary90Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary95Brush" Color="{DynamicResource Secondary95Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary98Brush" Color="{DynamicResource Secondary98Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Secondary100Brush" Color="{DynamicResource Secondary100Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral100Brush" Color="{DynamicResource Neutral100Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral98Brush" Color="{DynamicResource Neutral98Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral95Brush" Color="{DynamicResource Neutral95Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral90Brush" Color="{DynamicResource Neutral90Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral80Brush" Color="{DynamicResource Neutral80Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral70Brush" Color="{DynamicResource Neutral70Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral60Brush" Color="{DynamicResource Neutral60Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral50Brush" Color="{DynamicResource Neutral50Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral40Brush" Color="{DynamicResource Neutral40Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral30Brush" Color="{DynamicResource Neutral30Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral20Brush" Color="{DynamicResource Neutral20Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral10Brush" Color="{DynamicResource Neutral10Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Neutral0Brush" Color="{DynamicResource Neutral0Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Success90Brush" Color="{DynamicResource Success90Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Success80Brush" Color="{DynamicResource Success80Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Success70Brush" Color="{DynamicResource Success70Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Success60Brush" Color="{DynamicResource Success60Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Success50Brush" Color="{DynamicResource Success50Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Success40Brush" Color="{DynamicResource Success40Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Danger90Brush" Color="{DynamicResource Danger90Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Danger80Brush" Color="{DynamicResource Danger80Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Danger70Brush" Color="{DynamicResource Danger70Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Danger60Brush" Color="{DynamicResource Danger60Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Danger50Brush" Color="{DynamicResource Danger50Color}" Opacity="1"/>
-	<SolidColorBrush x:Key="Danger40Brush" Color="{DynamicResource Danger40Color}" Opacity="1"/>
+  <SolidColorBrush x:Key="ListItemNormalBrush" Color="#b6cde0"/>
+  <SolidColorBrush x:Key="ListItemHoverBrush" Color="#9abedb"/>
+  <SolidColorBrush x:Key="ListItemSelectedBrush" Color="#78b0de"/>
+  
+  <Color x:Key="StartBorderGradientColor">#EAEFEF</Color>
+  <Color x:Key="EndBorderGradientColor">#BFC9D1</Color>
+  
+  <Color x:Key="DangerColor">#9c0303</Color>
+  <Color x:Key="WarningColor">#F57C00</Color>
+  <Color x:Key="SuccessColor">#215c2e</Color>
+  <Color x:Key="InformationColor">#151f61</Color>
 
   </ResourceDictionary>

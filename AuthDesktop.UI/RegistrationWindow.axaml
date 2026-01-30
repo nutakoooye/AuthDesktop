@@ -5,9 +5,32 @@
         xmlns:vm="using:AuthDesktop.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         WindowStartupLocation="CenterOwner"
-        Width="600" Height="400" CanResize="False" 
+        Width="600" Height="600" CanResize="False" 
         x:Class="AuthDesktop.UI.RegistrationWindow"
         x:DataType="vm:RegistrationViewModel"
         Title="Registration">
-    Registration 
+    <Panel>
+        <Border Classes="Card">
+            <StackPanel HorizontalAlignment="Center" Width="400">
+                <TextBlock Classes="h3" HorizontalAlignment="Center">Registration</TextBlock>
+                <TextBox Classes="Form" Watermark="username" Text="{Binding Username}"/>
+                <TextBox Classes="Form" Watermark="first name" Text="{Binding FirstName}"/>
+                <TextBox Classes="Form" Watermark="last name" Text="{Binding LastName}"/>
+                <TextBox Classes="Form" Watermark="email address" Text="{Binding Email}"/>
+                <TextBox Classes="Form" Watermark="phone number" Text="{Binding PhoneNumber}"/>
+                <TextBox Classes="Form" Watermark="password" Text="{Binding Password}"/>
+                <TextBox Classes="Form" Watermark="confirm password" Text="{Binding ConfirmPassword}"/>
+                
+                <Button HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Margin="20, 5" 
+                        Command="{Binding RegisterCommand}"
+                        Content="REGISTER"/>
+                
+                <TextBlock Text="{Binding ValidationMessage}" Classes="warning" IsVisible="{Binding ValidationMessage}" />
+                <TextBlock Text="{Binding ErrorMessage}" Classes="danger" IsVisible="{Binding ErrorMessage}" />
+                <ProgressBar IsVisible="{Binding IsBusy}" IsIndeterminate="True"></ProgressBar>
+            </StackPanel>
+        </Border>
+    </Panel>
 </Window>

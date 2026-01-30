@@ -1,4 +1,5 @@
-﻿using AuthDesktop.Models;
+﻿using System.Diagnostics;
+using AuthDesktop.Models;
 using AuthDesktop.ViewModels.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -48,6 +49,12 @@ public partial class AuthViewModel:ObservableObject
     [RelayCommand]
     public async Task RegisterAsync()
     {
-        var logpas = await WeakReferenceMessenger.Default.Send(new RegistrationMessage());
+        var loginCreds = await WeakReferenceMessenger.Default.Send(new RegistrationMessage());
+        if (loginCreds is not null)
+        {
+            LoginVm.LoginText = loginCreds.Login;
+            LoginVm.PasswordText = loginCreds.Password;
+            LoginVm.LoginCommand.Execute(null);
+        }
     }
 }

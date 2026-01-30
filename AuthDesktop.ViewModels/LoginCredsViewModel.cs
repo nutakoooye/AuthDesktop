@@ -1,11 +1,11 @@
 ﻿namespace AuthDesktop.ViewModels;
 
-public record LogPasViewModel
+public record LoginCredsViewModel
 {
     public string Login { get; set; }
     public string Password { get; set; }
     
-    public LogPasViewModel(string login, string password)
+    public LoginCredsViewModel(string login, string password)
     {
         Login = login;
         Password = password;

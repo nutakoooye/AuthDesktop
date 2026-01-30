@@ -3,4 +3,4 @@ using CommunityToolkit.Mvvm.Messaging.Messages;
 
 namespace AuthDesktop.ViewModels.Messages;
 
-public class RegistrationMessage : AsyncRequestMessage<LogPasViewModel?>;
+public class RegistrationMessage : AsyncRequestMessage<LoginCredsViewModel?>;

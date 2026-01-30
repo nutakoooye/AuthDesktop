@@ -19,7 +19,9 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </Panel>
-            <ContentControl Content="{Binding SelectedTab.ViewModel}" />
+            <Border Classes="Card Level2">
+                <ContentControl Content="{Binding SelectedTab.ViewModel}" />
+            </Border>
         </DockPanel>
     </DataTemplate>
 </ResourceDictionary>

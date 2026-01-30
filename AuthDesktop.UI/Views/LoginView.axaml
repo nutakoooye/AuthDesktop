@@ -4,10 +4,17 @@
     <DataTemplate x:Key="LoginTemplate" DataType="vm:LoginViewModel">
         <Border>
             <StackPanel>
-                <TextBox Text="{Binding LoginText}" Watermark="login"></TextBox>
-                <TextBox Text="{Binding PasswordText}" Watermark="password" PasswordChar="*"></TextBox>
-                <TextBlock Text="{Binding ErrorMessage}" Foreground="{DynamicResource Danger40Color}"></TextBlock>
-                <Button Command="{Binding LoginCommand}">LOG IN</Button>
+                <TextBox Classes="Form" Text="{Binding LoginText}" Watermark="username"></TextBox>
+                <TextBox Classes="Form" Text="{Binding PasswordText}" Watermark="password" PasswordChar="*"></TextBox>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding ErrorMessage}" Classes="danger"></TextBlock>
+                
+                <Button HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Margin="20, 5" 
+                        Command="{Binding LoginCommand}"
+                        Content="LOG IN"/>
+                
+                <ProgressBar IsVisible="{Binding IsBusy}" IsIndeterminate="True"></ProgressBar>
             </StackPanel>
         </Border>
     </DataTemplate>

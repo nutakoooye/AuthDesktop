@@ -10,8 +10,8 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid ColumnDefinitions="* *">
-                    <TextBlock Name="PART_KeyTextBlock" Grid.Column="0" Text="{TemplateBinding Key}"/>
-                    <TextBlock Name="PART_ValueTextBlock" Grid.Column="1" Text="{TemplateBinding Value}"/>
+                    <TextBlock Name="PART_KeyTextBlock" Classes="h5" Grid.Column="0" Text="{TemplateBinding Key}"/>
+                    <TextBlock Name="PART_ValueTextBlock" Classes="h5" Grid.Column="1" Text="{TemplateBinding Value}"/>
                     
                     <Grid.Styles>
                         <Style Selector="TextBlock#PART_KeyTextBlock">

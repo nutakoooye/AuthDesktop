@@ -5,7 +5,7 @@
     <DataTemplate x:Key="UserInfoTemplate" DataType="vm:UserInfoViewModel">
         <Panel>
             <Panel Name="NotAuthPanel" IsVisible="{Binding !AuthStateService.IsLoggedIn}">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Classes="h4" HorizontalAlignment="Center" VerticalAlignment="Center">
                     Please, log in to view user info
                 </TextBlock>
             </Panel>

@@ -5,14 +5,19 @@
         <Panel>
             <DockPanel IsVisible="{Binding !AuthStateService.IsLoggedIn}">
                 <Panel DockPanel.Dock="Bottom">
-                    <Button Command="{Binding RegisterCommand}">Register</Button>
+                    <Button Command="{Binding RegisterCommand}"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"
+                            Margin="20, 5" 
+                            Content="Register"/>
                 </Panel>
-                <ContentControl Content="{Binding LoginVm}"></ContentControl>
+                <ContentControl VerticalAlignment="Center"
+                                Content="{Binding LoginVm}"/>
             </DockPanel>
-            <StackPanel IsVisible="{Binding AuthStateService.IsLoggedIn}" 
-                        VerticalAlignment="Center">
+            
+            <StackPanel IsVisible="{Binding AuthStateService.IsLoggedIn}" VerticalAlignment="Center">
                 <Button HorizontalAlignment="Center" Command="{Binding LogoutCommand}" Content="LOG OUT"/>
-                <TextBlock HorizontalAlignment="Center" Foreground="{DynamicResource Danger40Color}"></TextBlock>
+                <TextBlock Classes="danger" Text="{Binding ErrorMessage}"/>
             </StackPanel>
         </Panel>
         

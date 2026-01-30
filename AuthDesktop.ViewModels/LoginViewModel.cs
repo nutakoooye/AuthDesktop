@@ -11,13 +11,18 @@ public partial class LoginViewModel:ObservableObject
     private IAuthStateService _authStateService;
     
     [ObservableProperty]
-    private string _loginText;
+    [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
+    private string _loginText = string.Empty;
     
     [ObservableProperty]
-    private string _passwordText;
+    [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
+    private string _passwordText  = string.Empty;
     
     [ObservableProperty]
     private string? _errorMessage;
+    
+    [ObservableProperty] 
+    private bool _isBusy;
 
     public LoginViewModel(IAuthClientService authClientService, IAuthStateService authStateService)
     {
@@ -26,19 +31,22 @@ public partial class LoginViewModel:ObservableObject
     }
     
     
-    [RelayCommand]
-    public async Task LoginAsync()
+    [RelayCommand(CanExecute = nameof(CanLogin))]
+    private async Task LoginAsync() 
     {
+        IsBusy = true;
         var loginResponse = await _authClientService.LoginAsync(LoginText, PasswordText);
         
         if (!loginResponse.IsSuccess)
         {
             ErrorMessage =  loginResponse.Error?.Message;
+            IsBusy = false;
             return;
         }
-        if (loginResponse.Data.Code != 200) // /user/login/ может вернуть успешный ответ с кодом 404 в теле ответа
+        if (loginResponse.Data.Code != 200) 
         {
             ErrorMessage = loginResponse.Data.Message;
+            IsBusy = false;
             return;
         }
         
@@ -46,6 +54,7 @@ public partial class LoginViewModel:ObservableObject
         if (!getUserResponse.IsSuccess)
         {
             ErrorMessage =  getUserResponse.Error?.Message;
+            IsBusy = false;
             return;
         }
 
@@ -54,6 +63,7 @@ public partial class LoginViewModel:ObservableObject
         
         _authStateService.Login(sessionId, user);
         Clear();
+        IsBusy = false;
     }
 
     
@@ -63,5 +73,7 @@ public partial class LoginViewModel:ObservableObject
         LoginText = "";
         PasswordText = "";
     }
+
+    private bool CanLogin() => LoginText != string.Empty && PasswordText != string.Empty;
     
 }

@@ -21,7 +21,7 @@ public partial class MainWindow : Window
             var dialog = App.Services.GetRequiredService<RegistrationWindow>();
             dialog.DataContext = App.Services.GetRequiredService<RegistrationViewModel>();
 
-            m.Reply(dialog.ShowDialog<LogPasViewModel?>(w));
+            m.Reply(dialog.ShowDialog<LoginCredsViewModel?>(w));
         });
     }
 }

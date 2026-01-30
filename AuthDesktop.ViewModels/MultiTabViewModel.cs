@@ -19,5 +19,7 @@ public partial class MultiTabViewModel: ObservableObject
         Tabs = new();
         Tabs.Add(new Tab("User Info", new UserInfoViewModel(_authStateService)));
         Tabs.Add(new Tab("Developer page", new DeveloperDataViewModel()));
+        
+        SelectedTab = Tabs[0];
     }
 }
