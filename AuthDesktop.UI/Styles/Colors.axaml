@@ -12,5 +12,11 @@
   <Color x:Key="WarningColor">#F57C00</Color>
   <Color x:Key="SuccessColor">#215c2e</Color>
   <Color x:Key="InformationColor">#151f61</Color>
+  
+  <SolidColorBrush x:Key="ButtonBackground" Color="#EAEFEF"/>
+  <SolidColorBrush x:Key="ButtonHover" Color="#DCE3E8"/>
+  <SolidColorBrush x:Key="ButtonPressed" Color="#C9D3DA"/>
+  <SolidColorBrush x:Key="ButtonDisabled" Color="#F0F0F0"/>
+  <SolidColorBrush x:Key="ButtonText" Color="#1E1E1E"/>
 
   </ResourceDictionary>

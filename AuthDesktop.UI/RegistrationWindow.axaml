@@ -18,17 +18,13 @@
                 <TextBox Classes="Form" Watermark="last name" Text="{Binding LastName}"/>
                 <TextBox Classes="Form" Watermark="email address" Text="{Binding Email}"/>
                 <TextBox Classes="Form" Watermark="phone number" Text="{Binding PhoneNumber}"/>
-                <TextBox Classes="Form" Watermark="password" Text="{Binding Password}"/>
-                <TextBox Classes="Form" Watermark="confirm password" Text="{Binding ConfirmPassword}"/>
+                <TextBox Classes="Form" PasswordChar="*" Watermark="password" Text="{Binding Password}"/>
+                <TextBox Classes="Form" PasswordChar="*" Watermark="confirm password" Text="{Binding ConfirmPassword}"/>
                 
-                <Button HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Center"
-                        Margin="20, 5" 
-                        Command="{Binding RegisterCommand}"
-                        Content="REGISTER"/>
+                <Button Classes="Card" Command="{Binding RegisterCommand}" Content="REGISTER"/>
                 
-                <TextBlock Text="{Binding ValidationMessage}" Classes="warning" IsVisible="{Binding ValidationMessage}" />
-                <TextBlock Text="{Binding ErrorMessage}" Classes="danger" IsVisible="{Binding ErrorMessage}" />
+                <TextBlock Text="{Binding ValidationMessage}" Classes="warning" IsVisible="{Binding ValidationMessage}" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding ErrorMessage}" Classes="danger" IsVisible="{Binding ErrorMessage}" HorizontalAlignment="Center"/>
                 <ProgressBar IsVisible="{Binding IsBusy}" IsIndeterminate="True"></ProgressBar>
             </StackPanel>
         </Border>

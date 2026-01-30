@@ -11,6 +11,7 @@
         <StyleInclude Source="Styles/CardBorder.axaml"></StyleInclude>
         <StyleInclude Source="Styles/FormTextBox.axaml"></StyleInclude>
         <StyleInclude Source="Styles/RoundedListBox.axaml"></StyleInclude>
+        <StyleInclude Source="Styles/CardButton.axaml"></StyleInclude>
         <StyleInclude Source="Styles/Fonts.axaml"></StyleInclude>
     </Application.Styles>
     <Application.Resources>

@@ -4,7 +4,7 @@
     <DataTemplate x:Key="MultiTabTemplate" DataType="vm:MultiTabViewModel">
         <DockPanel>
             <Panel DockPanel.Dock="Top" HorizontalAlignment="Center">
-                <ListBox ItemsSource="{Binding Tabs, Mode=TwoWay}" SelectedItem="{Binding SelectedTab}" Background="Transparent">
+                <ListBox Classes="Rounded" ItemsSource="{Binding Tabs, Mode=TwoWay}" SelectedItem="{Binding SelectedTab}" Background="Transparent">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel />

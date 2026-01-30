@@ -96,7 +96,7 @@ public partial class RegistrationViewModel : ObservableObject
             string.IsNullOrWhiteSpace(Password) ||
             string.IsNullOrWhiteSpace(ConfirmPassword))
         {
-            ValidationMessage = "Username ans password is required!";
+            ValidationMessage = "Username and password is required!";
             return false;
         }
 

@@ -1,7 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style Selector="ListBoxItem">
+    <Style Selector="ListBox.Rounded ListBoxItem">
         <Setter Property="Padding" Value="10"/>
         <Setter Property="Margin" Value="4"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -24,12 +24,12 @@
         </Setter>
     </Style>
     
-    <Style Selector="ListBoxItem:pointerover">
+    <Style Selector="ListBox.Rounded ListBoxItem:pointerover">
         <Setter Property="Background"
                 Value="{DynamicResource ListItemHoverBrush}"/>
     </Style>
 
-    <Style Selector="ListBoxItem:selected">
+    <Style Selector="ListBox.Rounded ListBoxItem:selected">
         <Setter Property="Background"
                 Value="{DynamicResource ListItemSelectedBrush}"/>
     </Style>

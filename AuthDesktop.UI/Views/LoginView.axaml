@@ -8,9 +8,7 @@
                 <TextBox Classes="Form" Text="{Binding PasswordText}" Watermark="password" PasswordChar="*"></TextBox>
                 <TextBlock HorizontalAlignment="Center" Text="{Binding ErrorMessage}" Classes="danger"></TextBlock>
                 
-                <Button HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Center"
-                        Margin="20, 5" 
+                <Button Classes="Card"
                         Command="{Binding LoginCommand}"
                         Content="LOG IN"/>
                 
