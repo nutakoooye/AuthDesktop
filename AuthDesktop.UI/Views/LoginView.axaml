@@ -6,11 +6,10 @@
             <StackPanel>
                 <TextBox Classes="Form" Text="{Binding LoginText}" Watermark="username"></TextBox>
                 <TextBox Classes="Form" Text="{Binding PasswordText}" Watermark="password" PasswordChar="*"></TextBox>
+                
                 <TextBlock HorizontalAlignment="Center" Text="{Binding ErrorMessage}" Classes="danger"></TextBlock>
                 
-                <Button Classes="Card"
-                        Command="{Binding LoginCommand}"
-                        Content="LOG IN"/>
+                <Button Classes="Card" Command="{Binding LoginCommand}" Content="LOG IN"/>
                 
                 <ProgressBar IsVisible="{Binding IsBusy}" IsIndeterminate="True"></ProgressBar>
             </StackPanel>

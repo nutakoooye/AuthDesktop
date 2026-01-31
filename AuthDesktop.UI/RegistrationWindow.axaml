@@ -25,6 +25,7 @@
                 
                 <TextBlock Text="{Binding ValidationMessage}" Classes="warning" IsVisible="{Binding ValidationMessage}" HorizontalAlignment="Center"/>
                 <TextBlock Text="{Binding ErrorMessage}" Classes="danger" IsVisible="{Binding ErrorMessage}" HorizontalAlignment="Center"/>
+                
                 <ProgressBar IsVisible="{Binding IsBusy}" IsIndeterminate="True"></ProgressBar>
             </StackPanel>
         </Border>

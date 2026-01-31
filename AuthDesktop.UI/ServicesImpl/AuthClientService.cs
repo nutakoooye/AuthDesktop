@@ -26,7 +26,7 @@ public class AuthClientService : IAuthClientService
         _baseUrl = _configurationService.AuthApiUrl;
 
         var handler = new HttpClientHandler();
-        string? proxyHost = Environment.GetEnvironmentVariable("PROXY_HOST", EnvironmentVariableTarget.User);
+        string? proxyHost = Environment.GetEnvironmentVariable("PROXY_HOST", EnvironmentVariableTarget.User); // api не всегда доступен без прокси/впн
         if (proxyHost is not null)
         {
             var proxy = new WebProxy(proxyHost)
@@ -41,8 +41,7 @@ public class AuthClientService : IAuthClientService
         }
         
         _httpClient = httpClient ?? new HttpClient(handler);
-        if (_httpClient.BaseAddress is null)
-            _httpClient.BaseAddress = new Uri(_baseUrl.TrimEnd('/') + "/");
+        _httpClient.BaseAddress ??= new Uri(_baseUrl.TrimEnd('/') + "/");
     }
 
     public Task<ApiResult<ApiResponse>> RegisterAsync(User user, CancellationToken ct = default)
